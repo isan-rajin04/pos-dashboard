@@ -1,0 +1,64 @@
+.widget {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+.tableContainer {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.table td {
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  font-size: 13px;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.cellId {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.cellMuted {
+  color: var(--text-secondary);
+}
+
+.cellAmount {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.badgeSucceed {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background-color: var(--brand-primary-light);
+  color: var(--brand-primary);
+  font-weight: 600;
+  font-size: 12px;
+}

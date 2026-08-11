@@ -1,0 +1,98 @@
+.header {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  background-color: var(--background);
+}
+
+.pageTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.breadcrumbItem {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color var(--transition-fast);
+  cursor: pointer;
+}
+
+.breadcrumbItem:hover {
+  color: var(--brand-primary);
+}
+
+.divider {
+  width: 1px;
+  height: 24px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.userProfile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.userName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.userRole {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--brand-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(245, 54, 92, 0.3);
+}
+
+.onlineIndicator {
+  position: absolute;
+  top: 0;
+  left: -4px;
+  width: 10px;
+  height: 10px;
+  background-color: var(--brand-primary);
+  border: 2px solid var(--background);
+  border-radius: 50%;
+}

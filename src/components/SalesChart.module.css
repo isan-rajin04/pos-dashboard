@@ -1,0 +1,54 @@
+.chartContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 400px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.totalValue {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--brand-primary);
+}
+
+.menuButton {
+  color: var(--text-tertiary);
+  transition: color var(--transition-fast);
+}
+
+.menuButton:hover {
+  color: var(--text-primary);
+}
+
+.chartWrapper {
+  flex: 1;
+  width: 100%;
+}
