@@ -2,20 +2,58 @@ import { Elysia, t } from "elysia";
 import { cors } from "@elysiajs/cors";
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
 export const app = new Elysia();
+const prisma = new PrismaClient();
 
 app.use(cors());
 
-// Get all products
-app.get("/api/products", async () => {
+// Get all products (with optional search)
+app.get("/api/products", async ({ query }) => {
   try {
+    const { search } = query;
     const products = await prisma.product.findMany({
+      where: search ? {
+        name: {
+          contains: search as string,
+        }
+      } : undefined,
       orderBy: { createdAt: "desc" },
     });
     return { success: true, data: products };
   } catch (error) {
     return { success: false, error: "Failed to fetch products" };
+  }
+});
+
+// Get stats
+app.get("/api/stats", async () => {
+  try {
+    const products = await prisma.product.findMany();
+    const totalValue = products.reduce((acc, curr) => acc + (curr.price * curr.stock), 0);
+    const totalProducts = products.length;
+    
+    // Group by category for charts
+    const categoryData: Record<string, number> = {};
+    products.forEach(p => {
+      const cat = p.category || "Uncategorized";
+      categoryData[cat] = (categoryData[cat] || 0) + (p.price * p.stock);
+    });
+
+    const chartData = Object.keys(categoryData).map(key => ({
+      name: key,
+      value: categoryData[key]
+    }));
+
+    return { 
+      success: true, 
+      data: {
+        totalValue,
+        totalProducts,
+        chartData
+      }
+    };
+  } catch (error) {
+    return { success: false, error: "Failed to fetch stats" };
   }
 });
 
