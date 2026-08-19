@@ -1,11 +1,16 @@
 {
-  "name": "backend",
+  "name": "pos-dashboard-backend",
   "module": "index.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "dev": "bun run --watch index.ts",
+    "start": "bun run index.ts",
+    "test": "bun test",
+    "seed": "bun run seed.ts"
+  },
   "devDependencies": {
     "@types/bun": "^1.3.14",
-    "@types/pg": "^8.23.1",
     "prisma": "6.4.1"
   },
   "peerDependencies": {
@@ -13,9 +18,7 @@
   },
   "dependencies": {
     "@elysiajs/cors": "^1.4.2",
-    "@prisma/adapter-pg": "^7.9.1",
     "@prisma/client": "6.4.1",
-    "elysia": "^1.4.29",
-    "pg": "^8.23.0"
+    "elysia": "^1.4.29"
   }
 }
