@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# POS Dashboard
 
-## Getting Started
+Sebuah Dashboard Point of Sales (POS) sederhana yang dibangun dengan:
+- **Backend**: Bun + Elysia.js + Prisma
+- **Frontend**: React (Vite) + TypeScript + Tailwind CSS v4
+- **Database**: PostgreSQL
 
-First, run the development server:
+## Persyaratan
+- Bun terinstal (https://bun.sh/)
+- Node.js & npm terinstal
+- PostgreSQL berjalan (lokal atau cloud)
 
+## 1. Setup Backend
+
+1. Masuk ke folder backend:
+   ```bash
+   cd backend
+   ```
+2. Instal dependensi:
+   ```bash
+   bun install
+   ```
+3. Konfigurasi Database:
+   Buka file `backend/.env` dan atur `DATABASE_URL` Anda:
+   ```env
+   DATABASE_URL="postgresql://username:password@localhost:5432/pos_db?schema=public"
+   ```
+4. Jalankan Migrasi Prisma untuk membuat tabel:
+   ```bash
+   bunx prisma db push
+   # atau `bunx prisma migrate dev`
+   ```
+5. Generate Prisma Client (opsional jika sudah dijalankan sebelumnya):
+   ```bash
+   bunx prisma generate
+   ```
+6. Jalankan server backend (Mode Development):
+   ```bash
+   bun run dev
+   ```
+   Backend akan berjalan di `http://localhost:3000`.
+
+## 2. Setup Frontend
+
+1. Buka terminal baru dan masuk ke folder frontend:
+   ```bash
+   cd frontend
+   ```
+2. Instal dependensi (bisa menggunakan `bun` atau `npm`):
+   ```bash
+   bun install
+   ```
+3. Jalankan server frontend:
+   ```bash
+   bun run dev
+   ```
+   Frontend akan berjalan di port default Vite (misalnya `http://localhost:5173`).
+
+## 3. Testing (Pengujian)
+
+Proyek ini dilengkapi dengan Unit Testing dan Integration Testing di sisi Backend menggunakan Bun Test Runner.
+
+Untuk menjalankan pengujian:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd backend
+bun test
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Dokumentasi API (Elysia.js)
+Base URL: `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `GET /api/products` : Mendapatkan seluruh data produk.
+- `GET /api/products/:id` : Mendapatkan data produk berdasarkan ID.
+- `POST /api/products` : Menambahkan data produk baru.
+  - Body: `{ name: String, price: Number, stock: Number, category?: String }`
+- `PUT /api/products/:id` : Memperbarui data produk.
+  - Body: Opsional field produk yang ingin diubah.
+- `DELETE /api/products/:id` : Menghapus data produk.
