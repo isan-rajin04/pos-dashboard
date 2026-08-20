@@ -8,11 +8,32 @@ datasource db {
 }
 
 model Product {
-  id        String   @id @default(uuid())
-  name      String
-  price     Float
-  stock     Int
-  category  String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id               String            @id @default(uuid())
+  name             String
+  price            Float
+  stock            Int
+  category         String?
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  transactionItems TransactionItem[]
+}
+
+model Transaction {
+  id        String            @id @default(uuid())
+  total     Float
+  note      String?
+  createdAt DateTime          @default(now())
+  items     TransactionItem[]
+}
+
+model TransactionItem {
+  id            String      @id @default(uuid())
+  transaction   Transaction @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+  transactionId String
+  product       Product     @relation(fields: [productId], references: [id])
+  productId     String
+  productName   String
+  price         Float
+  quantity      Int
+  subtotal      Float
 }
