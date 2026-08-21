@@ -481,7 +481,7 @@ export default function App() {
         <div className="overflow-x-auto flex-1">
           <table className="w-full text-left">
             <thead><tr className="bg-gray-50 dark:bg-gray-700/50 text-xs uppercase text-gray-500 dark:text-gray-400 font-semibold border-b border-gray-100 dark:border-gray-700">
-              {(['name','Produk'],['price','Harga'],['stock','Stok']).map&&([['name','Produk'],['price','Harga'],['stock','Stok']] as [SortKey,string][]).map(([k,l])=>(
+              {([['name','Produk'],['price','Harga'],['stock','Stok']] as [SortKey,string][]).map(([k,l])=>(
                 <th key={k} className={`p-4 ${k!=='name'?'text-right':''} cursor-pointer select-none hover:text-gray-700 dark:hover:text-gray-200`} onClick={()=>toggleSort(k)}>{l}<SortIcon k={k}/></th>
               ))}
               <th className="p-4 text-center">Aksi</th>
