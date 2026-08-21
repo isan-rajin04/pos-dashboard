@@ -12,9 +12,10 @@ import {
   CartesianGrid, PieChart, Pie, Cell, Legend, LineChart, Line
 } from 'recharts';
 
-const API_URL = 'http://localhost:3000/api/products';
-const STATS_URL = 'http://localhost:3000/api/stats';
-const TRX_URL = 'http://localhost:3000/api/transactions';
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+const API_URL = `${API_BASE}/api/products`;
+const STATS_URL = `${API_BASE}/api/stats`;
+const TRX_URL = `${API_BASE}/api/transactions`;
 
 const CHART_COLORS = ['#3b82f6', '#8b5cf6', '#10b981', '#f59e0b', '#ef4444', '#06b6d4', '#f97316'];
 
