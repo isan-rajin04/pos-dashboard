@@ -225,5 +225,12 @@ app.delete("/api/transactions/:id", async ({ params: { id }, set }) => {
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port);
-console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`);
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(port);
+  console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`);
+}
+
+export default function (req: Request) {
+  return app.fetch(req);
+}
+export const fetch = app.fetch;
